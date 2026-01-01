@@ -29,6 +29,99 @@
 		return choice;
 	}
 
+	void Functions::displaySingleEntry(list<Entries> list, int id)
+	{
+		bool success = false;
+
+		for(Entries item : list)
+		{
+			if(item.getId() == id)
+			{
+				cout<<"Entry found!"<<endl<<endl;
+				cout<<"Id: "<<item.getId()<<endl;
+				cout<<"Name: "<<item.getName()<<endl;
+				cout<<"Topic: "<<item.getTopic()<<endl;
+				cout<<"Notes: "<<item.getNotes()<<endl<<endl;
+
+				success = true;
+			}
+		}
+
+		if (success == false)
+		{
+			cout<<"No such record has been found!"<<endl;
+		}
+	}
+
+	void Functions::displaySingleEntry(list<Entries> list, string name)
+	{
+		bool success = false;
+
+		for(Entries item : list)
+		{
+			if(!item.getName().compare(name))
+			{
+				cout<<"Entry found!"<<endl<<endl;
+				cout<<"Id: "<<item.getId()<<endl;
+				cout<<"Name: "<<item.getName()<<endl;
+				cout<<"Topic: "<<item.getTopic()<<endl;
+				cout<<"Notes: "<<item.getNotes()<<endl<<endl;
+
+				success = true;
+			}
+		}
+
+		if (success == false)
+		{
+			cout<<"No such record has been found!"<<endl;
+		}
+	}
+
+	void Functions::displaySingleEntryMenu(list<Entries> list)
+	{
+		int id;
+		int choice;
+		string input;
+
+		cout<<"1. Display an entry by id"<<endl;
+		cout<<"2. Display an entry by name"<<endl;
+
+		choice = Functions::inputChoice();
+
+		switch(choice)
+		{
+			case 1:
+				cout<<"Enter the id of the entry you want to display."<<endl;
+				getline(cin, input);
+
+				try
+				{
+					id = stoi(input);
+					Functions::displaySingleEntry(list, id);
+				}
+				catch(invalid_argument e)
+				{
+					cout<<"This id is invalid!"<<endl<<endl;
+					break;
+				}
+
+				break;
+
+			case 2:
+				cout<<"Enter the name of the entry you want to display."<<endl;
+				getline(cin, input);
+
+				Functions::displaySingleEntry(list, input);
+
+				break;
+
+			default:
+				cout<<"No such choice available."<<endl<<endl;
+
+				break;
+		}
+
+	}
 
 //Display Entries
 	void Functions::displayEntries(list<Entries> list)
@@ -729,4 +822,32 @@
 		}
 
 		reader.close();
+	}
+
+	void Functions::checkNearing(list<Entries> list, int currentYear, int currentMonth, int currentDay)
+	{
+
+		cout<<currentYear<<"  "<<currentMonth<<" "<<currentDay<<endl;
+
+		for(Entries item : list)
+		{
+			if(item.getDeadline().getYear() - currentYear < 0)
+			{
+				cout<<"The contest "<<item.getName()<< " has expired and must be deleted!"<<endl;
+			}
+			else if(item.getDeadline().getYear() - currentYear == 0)
+			{
+				if(item.getDeadline().getMonth() - currentMonth <= 2)
+				{
+					if(item.getDeadline().getDay() - currentDay > 0)
+					{
+						cout<<"The contest "<<item.getName()<<" is near expiration!"<<endl;
+					}
+					else
+					{
+						cout<<"The contest "<<item.getName()<<" has expired and should be deleted!"<<endl;
+					}
+				}
+			}
+		}
 	}

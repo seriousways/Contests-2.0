@@ -20,6 +20,10 @@ public:
 	void saveData(list<Entries> list, string filename);
 	void quickSave(list<Entries> list, string filename);
 	void loadData(list<Entries>&list, string filename);
+	void checkNearing(list<Entries> list, int currentYear, int currentMonth, int currentDay);
+	void displaySingleEntry(list<Entries> list, int id);
+	void displaySingleEntry(list <Entries> list, string name);
+	void displaySingleEntryMenu(list<Entries> list);
 	Date enterDate();
 };
 

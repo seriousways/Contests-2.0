@@ -45,12 +45,13 @@ int main() {
 	{
 		cout<<"Choose an Option:"<<endl;
 		cout<<"1. Create New Entry"<<endl;
-		cout<<"2. View All Entries"<<endl;
-		cout<<"3. Edit Entry"<<endl;
-		cout<<"4. Delete Entry"<<endl;
-		cout<<"5. Save Data"<<endl;
-		cout<<"6. Load Data"<<endl;
-		cout<<"7. Exit Program"<<endl;
+		cout<<"2  Display Single Entry"<<endl;
+		cout<<"3. View All Entries"<<endl;
+		cout<<"4. Edit Entry"<<endl;
+		cout<<"5. Delete Entry"<<endl;
+		cout<<"6. Save Data"<<endl;
+		cout<<"7. Load Data"<<endl;
+		cout<<"8. Exit Program"<<endl;
 
 		choice = functions.inputChoice();
 
@@ -81,21 +82,26 @@ int main() {
 				break;
 
 			case 2:
-				functions.displayEntries(currentEntries);
+				functions.displaySingleEntryMenu(currentEntries);
 
 				break;
 
 			case 3:
-				functions.editEntry(currentEntries);
+				functions.displayEntries(currentEntries);
 
 				break;
 
 			case 4:
-				functions.deleteEntry(currentEntries);
+				functions.editEntry(currentEntries);
 
 				break;
 
 			case 5:
+				functions.deleteEntry(currentEntries);
+
+				break;
+
+			case 6:
 				if(currentEntries.size() > 0)
 				{
 
@@ -113,16 +119,18 @@ int main() {
 
 				break;
 
-			case 6:
+			case 7:
 
 				cout<<"Enter the name of the file you want to load from."<<endl;
 				getline(cin, filename);
 
 				functions.loadData(currentEntries, filename);
 
+				functions.checkNearing(currentEntries, currentYearInt, currentMonthInt, currentDayInt);
+
 				break;
 
-			case 7:
+			case 8:
 				runProgram = false;
 
 				if(currentEntries.size() > 0)
