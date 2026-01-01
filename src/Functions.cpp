@@ -41,7 +41,8 @@
 				cout<<"Id: "<<item.getId()<<endl;
 				cout<<"Name: "<<item.getName()<<endl;
 				cout<<"Topic: "<<item.getTopic()<<endl;
-				cout<<"Notes: "<<item.getNotes()<<endl<<endl;
+				cout<<"Notes: "<<item.getNotes()<<endl;
+				cout<<"Deadline: "<<item.getDeadline().getFullDeadline()<<endl<<endl;
 
 				success = true;
 			}
@@ -65,7 +66,8 @@
 				cout<<"Id: "<<item.getId()<<endl;
 				cout<<"Name: "<<item.getName()<<endl;
 				cout<<"Topic: "<<item.getTopic()<<endl;
-				cout<<"Notes: "<<item.getNotes()<<endl<<endl;
+				cout<<"Notes: "<<item.getNotes()<<endl;
+				cout<<"Deadline: "<<item.getDeadline().getFullDeadline()<<endl<<endl;
 
 				success = true;
 			}
@@ -789,12 +791,6 @@
 
 				Entries entry;
 
-				cout<<id<<endl;
-				cout<<name<<endl;
-				cout<<topic<<endl;
-				cout<<notes<<endl;
-				cout<<deadline<<endl;
-
 				entry.setId();
 				entry.setName(name);
 				entry.setTopic(topic);
@@ -826,9 +822,6 @@
 
 	void Functions::checkNearing(list<Entries> list, int currentYear, int currentMonth, int currentDay)
 	{
-
-		cout<<currentYear<<"  "<<currentMonth<<" "<<currentDay<<endl;
-
 		for(Entries item : list)
 		{
 			if(item.getDeadline().getYear() - currentYear < 0)
